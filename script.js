@@ -223,7 +223,6 @@ class ContactForm {
         this.emailjsPublicKey = 'Yg1wzIuPwYIWTIDIu';
         this.templateID = 'chaseliutemplateid';
         this.serviceID = 'chaseliuserviceid';
-        this.toEmail = `${{secrets.EMAIL}}`;
         
         this.init();
     }
@@ -273,7 +272,6 @@ class ContactForm {
                 this.serviceID,
                 this.templateID,
                 {
-                    to_email: this.toEmail,
                     from_name: this.form.name.value,
                     from_email: this.form.email.value,
                     message: this.form.message.value,
