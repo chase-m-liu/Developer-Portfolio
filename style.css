@@ -1247,20 +1247,82 @@ textarea {
 /* Social Links */
 .social-links {
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
     justify-content: center;
-    margin-top: 2rem;
+    margin-top: 2.5rem;
 }
 
-.social-link {
-    font-size: 1.5rem;
+.social-links a {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
     color: var(--text-color);
-    transition: transform 0.3s ease, color 0.3s ease;
+    font-size: 1.25rem;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
 }
 
-.social-link:hover {
-    transform: translateY(-3px);
+.social-links a::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--primary-color);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.social-links a i {
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+    box-shadow: 0 5px 15px rgba(var(--primary-rgb), 0.2);
+}
+
+.social-links a:hover::before {
+    opacity: 0.1;
+}
+
+.social-links a:hover i {
     color: var(--primary-color);
+    transform: scale(1.2);
+}
+
+/* Platform-specific hover colors */
+.social-links a[href*="github"]:hover {
+    border-color: #333;
+}
+
+.social-links a[href*="linkedin"]:hover {
+    border-color: #0077b5;
+}
+
+.social-links a[href*="twitter"]:hover {
+    border-color: #1da1f2;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .social-links {
+        gap: 1.5rem;
+    }
+
+    .social-links a {
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 1.1rem;
+    }
 }
 
 /* Footer */
