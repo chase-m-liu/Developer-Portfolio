@@ -342,7 +342,7 @@ const LANGUAGE_COLORS = {
 // Load GitHub projects
 async function loadGitHubProjects() {
     const username = 'chase-m-liu';
-    var token = process.env.ACCESS_TOKEN;
+    var token = '${{ secrets.ACCOUNT_TOKEN }}';
     const projectsContainer = document.getElementById('projects-container');
     
     try {
