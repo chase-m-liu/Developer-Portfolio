@@ -1,25 +1,79 @@
-/* Global Styles */
+/* Root Variables
+   These CSS variables define the global design tokens used throughout the site.
+   Changing these values will affect multiple components consistently.
+*/
 :root {
-    /* Dark mode (default) */
-    --primary-color: #60a5fa;      /* Brighter blue */
-    --primary-light: #93c5fd;      /* Lighter blue */
-    --bg-dark: #0f172a;           /* Darker navy */
-    --bg-darker: #1e293b;         /* Dark slate */
-    --text-color: #f1f5f9;        /* Off-white */
-    --text-secondary: #cbd5e1;    /* Light gray */
+    /* ==========================================================================
+       Colors - Dark Mode (Default Theme)
+       ========================================================================== */
+    --primary-color: #60a5fa;      /* Brighter blue - Main brand/accent color */
+    --primary-light: #93c5fd;      /* Lighter blue - Secondary accent color */
+    --bg-dark: #0f172a;           /* Darker navy - Main background color */
+    --bg-darker: #1e293b;         /* Dark slate - Secondary background color */
+    --text-color: #f1f5f9;        /* Off-white - Primary text color */
+    --text-secondary: #cbd5e1;    /* Light gray - Secondary text color */
     --border-color: rgba(148, 163, 184, 0.1); /* Subtle borders */
-    --hover-color: rgba(96, 165, 250, 0.1);   /* Subtle hover */
-    --card-bg: #1e293b;           /* Card background */
+    --hover-color: rgba(96, 165, 250, 0.1);   /* Subtle hover effect color */
+    --card-bg: #1e293b;           /* Card background color */
+    
+    /* RGB values for use in rgba() */
     --primary-rgb: 96, 165, 250;  /* RGB values for primary color */
     --bg-dark-rgb: 15, 23, 42;    /* RGB values for background */
-    --error-color: #ef4444;       /* Red for errors */
-    --success-color: #22c55e;     /* Green for success */
-    --transition-duration: 0.5s;
-    --scrollbar-bg: #f1f5f9;
-    --scrollbar-thumb: #cbd5e1;
+
+    /* ==========================================================================
+       Transitions - Animation Timing
+       ========================================================================== */
+    --transition-duration: 0.5s;   /* Default transition duration */
+    --transition-fast: all 0.3s ease;  /* Quick, simple transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);  /* Smooth, natural transitions */
+    --transition-bounce: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);  /* Playful, bouncy transitions */
+
+    /* ==========================================================================
+       Shadows - Elevation and Depth
+       ========================================================================== */
+    --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.1);  /* Subtle elevation */
+    --shadow-md: 0 4px 12px rgba(var(--primary-rgb), 0.3);  /* Medium elevation */
+    --shadow-lg: 0 4px 25px -5px rgba(var(--primary-rgb), 0.4);  /* Prominent elevation */
+
+    /* ==========================================================================
+       Border Radius - Corner Smoothing
+       ========================================================================== */
+    --radius-sm: 0.375rem;    /* Subtle rounding */
+    --radius-md: 0.5rem;      /* Medium rounding */
+    --radius-lg: 1rem;        /* Large rounding */
+    --radius-full: 9999px;    /* Circular/Pill shape */
+
+    /* ==========================================================================
+       Spacing - Layout and Component Spacing
+       ========================================================================== */
+    --space-xs: 0.5rem;   /* 8px - Tight spacing */
+    --space-sm: 1rem;     /* 16px - Default spacing */
+    --space-md: 1.5rem;   /* 24px - Comfortable spacing */
+    --space-lg: 2rem;     /* 32px - Loose spacing */
+    --space-xl: 3rem;     /* 48px - Extra loose spacing */
+
+    /* ==========================================================================
+       Typography - Font Sizes
+       ========================================================================== */
+    --text-xs: 0.75rem;   /* 12px - Extra small text */
+    --text-sm: 0.875rem;  /* 14px - Small text */
+    --text-base: 1rem;    /* 16px - Base text size */
+    --text-lg: 1.25rem;   /* 20px - Large text */
+    --text-xl: 1.5rem;    /* 24px - Extra large text */
+    --text-2xl: 2rem;     /* 32px - Heading size */
+    --text-3xl: 2.5rem;   /* 40px - Large heading size */
+
+    /* ==========================================================================
+       Scrollbar Customization
+       ========================================================================== */
+    --scrollbar-bg: #f1f5f9;      /* Scrollbar track color */
+    --scrollbar-thumb: #cbd5e1;   /* Scrollbar handle color */
 }
 
-/* Light mode */
+/* ==========================================================================
+   Light Theme Overrides
+   Changes color variables when light theme is active
+   ========================================================================== */
 :root[data-theme="light"] {
     --primary-color: #2563eb;      /* Deep blue */
     --primary-light: #3b82f6;      /* Bright blue */
@@ -32,13 +86,14 @@
     --card-bg: #ffffff;           /* Card background */
     --primary-rgb: 37, 99, 235;   /* RGB values for primary color */
     --bg-dark-rgb: 255, 255, 255; /* RGB values for background */
-    --error-color: #dc2626;       /* Dark red for errors */
-    --success-color: #16a34a;     /* Dark green for success */
-    --scrollbar-bg: #f1f5f9;
-    --scrollbar-thumb: #cbd5e1;
+    --scrollbar-bg: #f1f5f9;      /* Light mode scrollbar track */
+    --scrollbar-thumb: #cbd5e1;   /* Light mode scrollbar handle */
 }
 
-/* Theme Transition */
+/* ==========================================================================
+   Theme Transition
+   Ensures smooth transition when switching between light/dark modes
+   ========================================================================== */
 :root {
     transition: all var(--transition-duration) ease;
 }
@@ -1172,7 +1227,6 @@ input, textarea {
     border: 1px solid var(--border-color);
     border-radius: 0.5rem;
     color: var(--text-color);
-    transition: border-color var(--transition-duration);
     transition: all 0.3s ease;
 }
 
@@ -1379,10 +1433,9 @@ footer {
     align-items: center;
     justify-content: center;
     font-size: 1.2rem;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 100;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .theme-toggle-btn:hover {
@@ -1411,7 +1464,6 @@ footer {
     z-index: 1000;
     display: flex;
     transform: translateY(20px);
-    transition: all 0.3s ease;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -1518,4 +1570,15 @@ footer {
 @keyframes progressPulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.7; }
+}
+
+/* Common link styles */
+.hero-social a,
+.nav-links a,
+.footer-nav a,
+.project-links .btn,
+.social-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: var(--transition-smooth);
 }
