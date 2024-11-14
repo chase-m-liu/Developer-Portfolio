@@ -1,4 +1,4 @@
-// Skill level thresholds and labels
+// Define skill level thresholds and their corresponding labels
 const SKILL_LEVELS = {
     EXPERT: { min: 90, label: 'Expert' },
     PROFICIENT: { min: 70, label: 'Proficient' }, 
@@ -6,10 +6,12 @@ const SKILL_LEVELS = {
     BEGINNER: { min: 0, label: 'Beginner' }
 };
 
+// Helper function to determine skill level based on numeric score
 const getSkillLevel = score => 
     Object.values(SKILL_LEVELS)
         .find(level => score >= level.min)?.label || SKILL_LEVELS.BEGINNER.label;
 
+// Generate HTML for an individual skill item with name and progress bar
 const createSkillItem = ({ name, score }) => `
     <div class="skill-item" data-aos="fade-up">
         <div class="skill-header">
@@ -22,8 +24,10 @@ const createSkillItem = ({ name, score }) => `
     </div>
 `;
 
+// Load and render skills from data.json into their respective containers
 const loadSkills = async () => {
     try {
+        // Get container elements for languages and frameworks
         const [languagesContainer, frameworksContainer] = ['languages-container', 'frameworks-container']
             .map(id => document.getElementById(id));
 
@@ -31,12 +35,15 @@ const loadSkills = async () => {
             throw new Error('Skill containers not found');
         }
 
+        // Fetch skills data from data.json
         const { skills: { languages, frameworks } } = await fetch('data.json').then(res => res.json());
         
+        // Helper function to render skills in a container
         const renderSkills = (container, skills) => {
             container.innerHTML = skills.map(createSkillItem).join('');
         };
 
+        // Render both language and framework skills
         renderSkills(languagesContainer, languages);
         renderSkills(frameworksContainer, frameworks);
 
@@ -45,20 +52,22 @@ const loadSkills = async () => {
     }
 };
 
-// Navbar scroll behavior
+// Configuration for navbar scroll behavior
 const SCROLL_CONFIG = {
-    THRESHOLD: 300,
-    IDLE_TIMEOUT: 2000
+    THRESHOLD: 300,        // Scroll distance before hiding navbar
+    IDLE_TIMEOUT: 2000    // Time to wait before hiding navbar (ms)
 };
 
 const navbar = document.getElementById('navbar');
 let scrollTimer = null;
 
+// Toggle navbar visibility with animation
 const toggleNavbar = (show) => {
     navbar.style.transform = `translateY(${show ? '0' : '-100%'})`;
     navbar.style.opacity = show ? '1' : '0';
 };
 
+// Handle scroll events for navbar visibility
 const handleScroll = () => {
     toggleNavbar(true);
     clearTimeout(scrollTimer);
@@ -68,23 +77,26 @@ const handleScroll = () => {
     }
 };
 
-// Theme management
+// Theme constants and management
 const THEMES = {
     DARK: 'dark',
     LIGHT: 'light'
 };
 
+// Update UI elements for theme changes
 const updateThemeUI = (theme) => {
     document.documentElement.setAttribute('data-theme', theme);
     document.querySelector('#theme-toggle i').className = `fas fa-${theme === THEMES.DARK ? 'moon' : 'sun'}`;
 };
 
+// Initialize theme from localStorage or default to dark
 const initTheme = () => {
     const savedTheme = localStorage.getItem('theme') || THEMES.DARK;
     localStorage.setItem('theme', savedTheme);
     updateThemeUI(savedTheme);
 };
 
+// Toggle between light and dark themes
 const toggleTheme = () => {
     const currentTheme = localStorage.getItem('theme');
     const newTheme = currentTheme === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK;
@@ -92,13 +104,15 @@ const toggleTheme = () => {
     updateThemeUI(newTheme);
 };
 
-// Back to top button
+// Back to top button functionality
 const backToTopButton = document.getElementById('back-to-top');
 
+// Show/hide back to top button based on scroll position
 window.addEventListener('scroll', () => {
     backToTopButton.classList.toggle('visible', window.scrollY > 300);
 });
 
+// Smooth scroll to top when button is clicked
 backToTopButton.addEventListener('click', () => {
     window.scrollTo({
         top: 0,
@@ -106,8 +120,9 @@ backToTopButton.addEventListener('click', () => {
     });
 });
 
-// Initialize app
+// Initialize all components and animations when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize AOS (Animate On Scroll) library
     AOS.init({
         duration: 800,
         once: false,
@@ -115,20 +130,19 @@ document.addEventListener('DOMContentLoaded', () => {
         offset: 100
     });
     
-
-    // Set animation indices
+    // Helper function to set animation delay indices
     const setAnimationIndices = (selector) => {
         document.querySelectorAll(selector).forEach((el, index) => {
             el.style.setProperty('--index', index);
         });
     };
 
-    // Initialize animation indices for various elements
+    // Set animation indices for various elements
     setAnimationIndices('.timeline-item');
     setAnimationIndices('.skill-category');
     setAnimationIndices('.skill-item');
 
-    // Add scroll-triggered animations
+    // Setup intersection observer for scroll animations
     const animateOnScroll = (entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -143,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
         rootMargin: '50px'
     });
 
-    // Observe elements for animation
+    // Add scroll animation observers to elements
     document.querySelectorAll('.bio-text, .timeline-item, .skill-category, .skill-item')
         .forEach(el => scrollObserver.observe(el));
 
@@ -160,24 +174,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Initialize components
     loadSkills();
     initTheme();
     
+    // Add event listeners
     document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
     window.addEventListener('scroll', handleScroll);
     toggleNavbar(true);
 });
 
-// Add navbar styles
+// Add transition styles for navbar
 document.head.appendChild(Object.assign(document.createElement('style'), {
     textContent: '#navbar { transition: transform 0.3s ease, opacity 0.3s ease; }'
 }));
 
+// Add scrolled class to navbar when scrolling
 window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 50);
 });
 
-// Scroll Progress Bar
+// Scroll Progress Bar Component
 class ScrollProgressBar {
     constructor() {
         this.progressBar = document.getElementById('scrollBar');
@@ -186,9 +203,11 @@ class ScrollProgressBar {
         this.init();
     }
 
+    // Initialize scroll progress bar
     init() {
         this.updateProgress();
 
+        // Update on scroll with requestAnimationFrame for performance
         window.addEventListener('scroll', () => {
             this.lastKnownScrollPosition = window.scrollY;
             if (!this.ticking) {
@@ -200,10 +219,12 @@ class ScrollProgressBar {
             }
         });
 
+        // Update on window resize and content changes
         window.addEventListener('resize', () => this.updateProgress());
         new ResizeObserver(() => this.updateProgress()).observe(document.body);
     }
 
+    // Update progress bar width based on scroll position
     updateProgress() {
         if (!this.progressBar) return;
         const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -212,14 +233,16 @@ class ScrollProgressBar {
     }
 }
 
-// Contact Form
+// Contact Form Component
 class ContactForm {
     constructor() {
+        // Initialize form elements and configuration
         this.form = document.getElementById('contact-form');
         this.statusDiv = document.getElementById('form-status');
         this.submitButton = this.form.querySelector('.submit-btn');
         this.originalButtonText = this.submitButton.querySelector('.btn-text').textContent;
         
+        // EmailJS configuration
         this.emailjsPublicKey = 'Yg1wzIuPwYIWTIDIu';
         this.templateID = 'chaseliutemplateid';
         this.serviceID = 'chaseliuserviceid';
@@ -227,6 +250,7 @@ class ContactForm {
         this.init();
     }
 
+    // Initialize form functionality
     init() {
         emailjs.init(this.emailjsPublicKey);
         this.form.addEventListener('submit', e => this.handleSubmit(e));
@@ -237,11 +261,13 @@ class ContactForm {
         });
     }
 
+    // Validate individual form fields
     validateField(field) {
         const errorElement = document.getElementById(`${field.id}-error`);
         let isValid = true;
         let errorMessage = '';
 
+        // Validation rules for each field
         const validations = {
             name: () => field.value.length >= 2 || 'Name must be at least 2 characters long',
             email: () => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value) || 'Please enter a valid email address',
@@ -254,20 +280,24 @@ class ContactForm {
             errorMessage = validation;
         }
 
+        // Update UI with validation results
         field.classList.toggle('invalid', !isValid);
         errorElement.textContent = errorMessage;
         return isValid;
     }
 
+    // Handle form submission
     async handleSubmit(e) {
         e.preventDefault();
         
+        // Validate all fields before submission
         if (![...this.form.querySelectorAll('input, textarea')]
             .every(field => this.validateField(field))) return;
 
         this.setLoadingState(true);
         
         try {
+            // Send email using EmailJS
             await emailjs.send(
                 this.serviceID,
                 this.templateID,
@@ -283,6 +313,7 @@ class ContactForm {
                 this.emailjsPublicKey
             );
 
+            // Show success message and reset form
             this.showStatus('Message sent successfully! I\'ll get back to you soon.', 'success');
             this.form.reset();
         } catch (error) {
@@ -293,12 +324,14 @@ class ContactForm {
         this.setLoadingState(false);
     }
 
+    // Update UI during form submission
     setLoadingState(isLoading) {
         this.submitButton.disabled = isLoading;
         this.submitButton.querySelector('.btn-text').textContent = isLoading ? 'Sending...' : this.originalButtonText;
         this.submitButton.querySelector('.spinner').style.display = isLoading ? 'inline-block' : 'none';
     }
 
+    // Display status messages
     showStatus(message, type) {
         Object.assign(this.statusDiv, {
             textContent: message,
@@ -306,19 +339,20 @@ class ContactForm {
             style: { display: 'block' }
         });
         
+        // Hide status message after delay
         setTimeout(() => {
             this.statusDiv.style.display = 'none';
         }, 5000);
     }
 }
 
-// Initialize components
+// Initialize ScrollProgressBar and ContactForm components
 document.addEventListener('DOMContentLoaded', () => {
     new ScrollProgressBar();
     new ContactForm();
 });
 
-// Language colors
+// Define colors for different programming languages
 const LANGUAGE_COLORS = {
     JavaScript: '#f1e05a',
     TypeScript: '#3178c6',
@@ -338,14 +372,16 @@ const LANGUAGE_COLORS = {
     React: '#61dafb'
 };
 
-// Load GitHub projects
+// Load and display GitHub projects
 async function loadGitHubProjects() {
     const username = 'chase-m-liu';
     const projectsContainer = document.getElementById('projects-container');
     
     try {
+        // Show loading state
         projectsContainer.innerHTML = '<div class="loading">Loading projects...</div>';
 
+        // Fetch GitHub repositories
         const response = await fetch(`https://api.github.com/users/${username}/repos`, {
             headers: {
                 'Accept': 'application/vnd.github.v3+json'
@@ -356,6 +392,7 @@ async function loadGitHubProjects() {
 
         const repos = await response.json();
         
+        // Generate HTML for each project
         projectsContainer.innerHTML = repos
             .filter(project => !project.fork)
             .map(project => {
@@ -411,6 +448,7 @@ async function loadGitHubProjects() {
             }).join('');
 
     } catch (error) {
+        // Show error message if loading fails
         console.error('Error loading projects:', error);
         projectsContainer.innerHTML = `
             <div class="error-message">
@@ -420,11 +458,13 @@ async function loadGitHubProjects() {
     }
 }
 
+// Configuration for intersection observer
 const observerOptions = {
     threshold: 0.2,
     rootMargin: '50px'
 };
 
+// Create intersection observer for section animations
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -435,8 +475,10 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
+// Observe all sections for animation
 document.querySelectorAll('section').forEach(section => {
     observer.observe(section);
 });
 
+// Load GitHub projects when DOM is ready
 document.addEventListener('DOMContentLoaded', loadGitHubProjects);
