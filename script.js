@@ -220,10 +220,10 @@ class ContactForm {
         this.submitButton = this.form.querySelector('.submit-btn');
         this.originalButtonText = this.submitButton.querySelector('.btn-text').textContent;
         
-        this.emailjsPublicKey = '${{secrets.public_key}}';
-        this.templateID = '${{secrets.template_id}}';
-        this.serviceID = '${{secrets.service_id}}';
-        this.toEmail = '${{secrets.email}}';
+        this.emailjsPublicKey = ${{secrets.public_key}};
+        this.templateID = ${{secrets.template_id}};
+        this.serviceID = ${{secrets.service_id}};
+        this.toEmail = ${{secrets.email}};
         
         this.init();
     }
@@ -343,7 +343,7 @@ const LANGUAGE_COLORS = {
 // Load GitHub projects
 async function loadGitHubProjects() {
     const username = 'chase-m-liu';
-    const token = '${{secrets.account_token}}';
+    const token = ${{secrets.account_token}};
     const projectsContainer = document.getElementById('projects-container');
     
     try {
