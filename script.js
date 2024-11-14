@@ -220,9 +220,9 @@ class ContactForm {
         this.submitButton = this.form.querySelector('.submit-btn');
         this.originalButtonText = this.submitButton.querySelector('.btn-text').textContent;
         
-        this.emailjsPublicKey = '${{secrets.PUBLIC_KEY}}';
-        this.templateID = '${{secrets.TEMPLATE_ID}}';
-        this.serviceID = '${{secrets.SERVICE_ID}}';
+        this.emailjsPublicKey = 'Yg1wzIuPwYIWTIDIu';
+        this.templateID = 'chaseliutemplateid';
+        this.serviceID = 'chaseliuserviceid';
         this.toEmail = '${{secrets.EMAIL}}';
         
         this.init();
