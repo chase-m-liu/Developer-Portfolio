@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#334155">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <meta name="description" content="Chase Liu - Software Developer Portfolio showcasing full-stack development and cloud technology expertise">
+    <meta name="keywords" content="Chase Liu, Software Developer, Full Stack Developer, Portfolio, Web Development">
+    <title>Chase Liu - Software Developer Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://unpkg.com/aos@2.3.1/dist/aos.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"></noscript>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+    <div class="scroll-progress">
+        <div class="scroll-progress-bar" id="scrollBar"></div>
+    </div>
+    <nav id="navbar">
+        <div class="nav-content">
+            <div class="logo">Chase Liu</div>
+            <ul class="nav-links">
+                <li><a href="#home" aria-label="Home section">Home</a></li>
+                <li><a href="#about" aria-label="About section">About</a></li>
+                <li><a href="#skills" aria-label="Skills section">Skills</a></li>
+                <li><a href="#projects" aria-label="Projects section">Projects</a></li>
+                <li><a href="#contact" aria-label="Contact section">Contact</a></li>
+            </ul>
+            <button class="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <section id="home" class="hero" data-aos="zoom-in">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Hi, I'm Chase Liu</h1>
+                    <p class="tagline">Creating impactful digital experiences through code</p>
+                    <div class="hero-cta">
+                        <a href="#projects" class="cta-button primary">Explore My Projects</a>
+                        <a href="#contact" class="cta-button secondary">Get in Touch</a>
+                    </div>
+                    <div class="hero-social">
+                        <a href="https://github.com/chase-m-liu" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter Profile">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image-container" data-aos="fade-left" data-aos-delay="200">
+                    <div class="hero-image-wrapper">
+                        <img 
+                            src="assets/hero-image.jpg" 
+                            alt="Chase Liu" 
+                            class="profile-image" 
+                            width="400" 
+                            height="400" 
+                            loading="lazy"
+                        >
+                        <div class="hero-image-backdrop"></div>
+                    </div>
+                    <div class="experience-badge" data-aos="zoom-in" data-aos-delay="400">
+                        <span class="years">5+</span>
+                        <span class="text">Years of<br>Experience</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" data-aos="fade-right" data-aos-delay="100">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="bio">
+                    <p class="bio-text">
+                        Innovative software developer with 3+ years of experience in full-stack development. 
+                        Proficient in JavaScript, Python, and modern frameworks like React and Node.js. 
+                        Passionate about designing scalable solutions and improving user experience through 
+                        thoughtful application design.
+                    </p>
+                    
+                    <div class="career-timeline">
+                        <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                            <time class="date">March 2021 - Present</time>
+                            <div class="details">
+                                <h3>Software Developer</h3>
+                                <p class="company">Tech Solutions Inc., San Francisco, CA</p>
+                                <ul class="achievements">
+                                    <li>Developed and maintained web applications, resulting in a 20% increase in user engagement</li>
+                                    <li>Collaborated with cross-functional teams to improve site performance, reducing load time by 30%</li>
+                                    <li>Created APIs and integrated third-party services to enhance product functionality</li>
+                                    <li>Led code reviews and mentored junior developers, fostering a collaborative team environment</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
+                            <time class="date">June 2019 - February 2021</time>
+                            <div class="details">
+                                <h3>Junior Software Developer</h3>
+                                <p class="company">InnoSoft LLC, San Francisco, CA</p>
+                                <ul class="achievements">
+                                    <li>Assisted in the development of e-commerce platforms, contributing to a 15% increase in sales</li>
+                                    <li>Optimized database queries, improving data retrieval speeds by 40%</li>
+                                    <li>Worked on front-end features in React, ensuring mobile responsiveness</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
+                            <time class="date">Graduated: May 2019</time>
+                            <div class="details">
+                                <h3>Bachelor of Science in Computer Science</h3>
+                                <p class="company">University of California, Berkeley</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="certifications" data-aos="fade-up" data-aos-delay="600">
+                        <h3>Certifications</h3>
+                        <ul>
+                            <li>AWS Certified Solutions Architect – Associate</li>
+                            <li>JavaScript Algorithms and Data Structures Certification – freeCodeCamp</li>
+                        </ul>
+                    </div>
+
+                    <a href="assets/Resume.pdf" class="download-btn" download data-aos="zoom-in" data-aos-delay="700">
+                        Download Resume <i class="fas fa-download"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" data-aos="fade-left" data-aos-delay="100">
+            <h2>Skills & Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Languages</h3>
+                    <div class="skill-list" id="languages-container"></div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-layer-group"></i> Frameworks</h3>
+                    <div class="skill-list" id="frameworks-container"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" data-aos="fade-up">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid" id="projects-container"></div>
+        </section>
+
+        <section id="contact" data-aos="fade-up">
+            <h2>Let's Connect</h2>
+            <div class="contact-content">
+                <div class="contact-text" data-aos="fade-right" data-aos-delay="200">
+                    <p>I'm always open to new opportunities, collaborations, and interesting projects. 
+                       Feel free to reach out!</p>
+                </div>
+                <form id="contact-form" class="contact-form" data-aos="fade-left" data-aos-delay="300">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required autocomplete="name">
+                        <span class="error-message" id="name-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required autocomplete="email">
+                        <span class="error-message" id="email-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                        <span class="error-message" id="message-error"></span>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <span class="btn-text">Send Message</span>
+                        <span class="spinner"></span>
+                    </button>
+                    <div class="form-status" id="form-status"></div>
+                </form>
+                <div class="social-links" data-aos="zoom-in" data-aos-delay="400">
+                    <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <nav class="footer-nav">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <p class="copyright">&copy; 2024 Chase Liu. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Dark Mode">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <button id="back-to-top" class="back-to-top-btn" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
