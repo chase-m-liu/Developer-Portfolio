@@ -343,7 +343,6 @@ const LANGUAGE_COLORS = {
 // Load GitHub projects
 async function loadGitHubProjects() {
     const username = 'chase-m-liu';
-    const token = '${{secrets.ACCOUNT_TOKEN}}';
     const projectsContainer = document.getElementById('projects-container');
     
     try {
@@ -351,7 +350,6 @@ async function loadGitHubProjects() {
 
         const response = await fetch(`https://api.github.com/users/${username}/repos`, {
             headers: {
-                'Authorization': `token ${token}`,
                 'Accept': 'application/vnd.github.v3+json'
             }
         });
